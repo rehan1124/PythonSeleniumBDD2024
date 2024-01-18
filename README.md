@@ -8,3 +8,5 @@ A Behavior-driven development testing framework based on Python, Selenium, Pytes
 
 * Running BDD tests is very easy. Run command `behave features` to execute all tests/feature-files
   OR `behave features/login.feature` to execute specific tests/feature-file.
+
+* For tag-based runs, execute command `behave --tags=smoke-testing`
