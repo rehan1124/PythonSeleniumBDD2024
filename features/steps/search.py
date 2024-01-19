@@ -1,23 +1,13 @@
 from behave import *
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-@given(u'User navigates to app home-page')
-def step_impl(context):
-    url = "https://tutorialsninja.com/demo/"
-    context.driver = webdriver.Chrome()
-    context.driver.implicitly_wait(30)
-    context.driver.maximize_window()
-    context.driver.get(url)
-
-
-@when(u'User enters product in search box')
+@given(u'User enters product in search box')
 def step_impl(context):
     context.driver.find_element(By.NAME, "search").send_keys("HP")
 
 
-@when(u'User enters invalid product in search box')
+@given(u'User enters invalid product in search box')
 def step_impl(context):
     context.driver.find_element(By.NAME, "search").send_keys("JALALALALA")
 
@@ -38,11 +28,6 @@ def step_impl(context):
                                        "//p[text()='There is no product that matches the search criteria.']").is_displayed()
 
 
-@when(u'User enters nothing in search box')
+@given(u'User enters nothing in search box')
 def step_impl(context):
     context.driver.find_element(By.NAME, "search").send_keys("")
-
-
-@then(u'User closes the browser')
-def step_impl(context):
-    context.driver.quit()
