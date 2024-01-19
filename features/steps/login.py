@@ -2,7 +2,7 @@ from behave import *
 from selenium.webdriver.common.by import By
 
 
-@when(u'User navigates to login page')
+@given(u'User navigates to login page')
 def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, "[title='My Account']").click()
     context.driver.find_element(By.LINK_TEXT, "Login").click()
