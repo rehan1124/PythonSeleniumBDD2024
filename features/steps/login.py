@@ -1,36 +1,44 @@
 from behave import *
-from selenium.webdriver.common.by import By
+
+from features.pages.accountloginpage import Accountloginpage
+from features.pages.myaccountpage import Myaccountpage
+from features.pages.searchpage import Searchpage
 
 
 @given(u'User navigates to login page')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, "[title='My Account']").click()
-    context.driver.find_element(By.LINK_TEXT, "Login").click()
+    search_page = Searchpage(context.driver)
+    search_page.click_my_account()
+    search_page.click_login_link()
 
 
 @when(u'User enters credentials')
 def step_impl(context):
-    context.driver.find_element(By.ID, "input-email").send_keys("bdd1@gmail.com")
-    context.driver.find_element(By.ID, "input-password").send_keys("bdd1")
+    account_login_page = Accountloginpage(context.driver)
+    account_login_page.enter_email_address("bdd1@gmail.com")
+    account_login_page.enter_password("bdd1")
 
 
 @when(u'User clicks on login button')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, "[value='Login']").click()
+    account_login_page = Accountloginpage(context.driver)
+    account_login_page.click_login_button()
 
 
 @then(u'User should be logged in')
 def step_impl(context):
-    assert context.driver.find_element(By.LINK_TEXT, "View your order history").is_displayed()
+    my_account_page = Myaccountpage(context.driver)
+    my_account_page.is_user_logged_in("View your order history")
 
 
 @when(u'User enters wrong credentials')
 def step_impl(context):
-    context.driver.find_element(By.ID, "input-email").send_keys("bdd1")
-    context.driver.find_element(By.ID, "input-password").send_keys("bdd1")
+    account_login_page = Accountloginpage(context.driver)
+    account_login_page.enter_email_address("bdd1")
+    account_login_page.enter_password("bdd1")
 
 
 @then(u'Proper warning message should be displayed')
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH,
-                                       "//*[text()='Warning: No match for E-Mail Address and/or Password.']").is_displayed()
+    account_login_page = Accountloginpage(context.driver)
+    account_login_page.is_warning_message_displayed("Warning: No match for E-Mail Address and/or Password.")

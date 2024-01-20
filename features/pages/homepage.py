@@ -10,6 +10,8 @@ class Homepage:
 
     def enter_product_name(self, product_name):
         self.driver.find_element(By.NAME, self._search_input_name).send_keys(product_name)
+        return
 
     def click_search_button(self):
         self.driver.find_element(By.CSS_SELECTOR, self._search_button).click()
+        return
