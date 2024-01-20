@@ -10,6 +10,16 @@ def before_scenario(context, scenario):
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
         context.driver = webdriver.Chrome(options=options)
+    elif browser == "Firefox":
+        # options = webdriver.FirefoxOptions()
+        # options.add_argument('--no-sandbox')
+        # context.driver = webdriver.Firefox(options=options)
+        context.driver = webdriver.Firefox()
+    elif browser == "Edge":
+        options = webdriver.EdgeOptions()
+        options.add_argument('--no-sandbox')
+        context.driver = webdriver.Edge(options=options)
+        context.driver = webdriver.Edge()
     else:
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
