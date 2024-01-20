@@ -1,33 +1,40 @@
 from behave import *
-from selenium.webdriver.common.by import By
+
+from features.pages.homepage import Homepage
+from features.pages.searchpage import Searchpage
 
 
 @given(u'User enters product in search box')
 def step_impl(context):
-    context.driver.find_element(By.NAME, "search").send_keys("HP")
+    home_page = Homepage(context.driver)
+    home_page.enter_product_name("HP")
 
 
 @given(u'User enters invalid product in search box')
 def step_impl(context):
-    context.driver.find_element(By.NAME, "search").send_keys("JALALALALA")
+    home_page = Homepage(context.driver)
+    home_page.enter_product_name("JALALALALA")
 
 
 @when(u'User clicks on search button')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, "[id='search'] button").click()
+    home_page = Homepage(context.driver)
+    home_page.click_search_button()
 
 
 @then(u'Product should be displayed in search results')
 def step_impl(context):
-    assert context.driver.find_element(By.LINK_TEXT, "HP LP3065").is_displayed()
+    search_page = Searchpage(context.driver)
+    search_page.is_product_displayed("HP LP3065")
 
 
 @then(u'Proper message for product not found should be displayed')
 def step_impl(context):
-    assert context.driver.find_element(By.XPATH,
-                                       "//p[text()='There is no product that matches the search criteria.']").is_displayed()
+    search_page = Searchpage(context.driver)
+    search_page.is_invalid_product("There is no product that matches the search criteria.")
 
 
 @given(u'User enters nothing in search box')
 def step_impl(context):
-    context.driver.find_element(By.NAME, "search").send_keys("")
+    home_page = Homepage(context.driver)
+    home_page.enter_product_name("")
