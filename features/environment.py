@@ -1,14 +1,22 @@
 from selenium import webdriver
+from utilities.config_reader import read_config
 
 
 def before_scenario(context, scenario):
-    url = "https://tutorialsninja.com/demo/"
-    options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
-    context.driver = webdriver.Chrome(options=options)
+    app_url = read_config("DEFAULT", "URL")
+    implicit_wait = read_config("DEFAULT", "IMPLICIT_WAIT")
+    browser = read_config("DEFAULT", "BROWSER")
+    if browser == "Chrome":
+        options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
+        context.driver = webdriver.Chrome(options=options)
+    else:
+        options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
+        context.driver = webdriver.Chrome(options=options)
     context.driver.maximize_window()
-    context.driver.implicitly_wait(30)
-    context.driver.get(url)
+    context.driver.implicitly_wait(implicit_wait)
+    context.driver.get(app_url)
 
 
 def after_scenario(context, scenario):
