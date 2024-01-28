@@ -20,6 +20,11 @@ behavex features --parallel-processes 4 --output-folder Reports
 Runs 4 tests in parallel and generates a html report in `Reports` directory
 ```
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 * Go through
   this [video](https://himanshu-sheth.medium.com/selenium-python-tutorial-getting-started-with-bdd-in-behave-7089e90ac91f)
   at the end
+
+* For passing browser name and URL
+  through [commandline](https://pravin-alhat7.medium.com/selenium-python-launch-any-browser-and-url-via-the-command-line-arguments-fb5585dc1d77) 
