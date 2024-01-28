@@ -1,19 +1,22 @@
 Feature: Search functionality
 
-  @smoke-testing
+#  @smoke-testing
   Scenario: Search for valid product
-    Given User enters product in search box
+    Given User enters product "HP" in search box
     When User clicks on search button
-    Then Product should be displayed in search results
+    Then Product "HP LP3065" should be displayed in search results
 
-
-  Scenario: Search for invalid product
-    Given User enters invalid product in search box
+  Scenario Outline: Search for invalid product
+    Given User enters invalid product "<product_name>" in search box
     When User clicks on search button
-    Then Proper message for product not found should be displayed
+    Then Message for product not found should be displayed "There is no product that matches the search criteria."
+    Examples:
+      | product_name |
+      | JALALALALA   |
+      | 1234ABCD     |
 
   @smoke-testing
   Scenario: Search without any product name
     Given User enters nothing in search box
     When User clicks on search button
-    Then Proper message for product not found should be displayed
+    Then Message for product not found should be displayed "There is no product that matches the search criteria."

@@ -12,11 +12,11 @@ def step_impl(context):
     search_page.click_login_link()
 
 
-@when(u'User enters credentials')
-def step_impl(context):
+@when(u'User enters credentials "{email}" "{password}"')
+def step_impl(context, email, password):
     account_login_page = Accountloginpage(context.driver)
-    account_login_page.enter_email_address("bdd1@gmail.com")
-    account_login_page.enter_password("bdd1")
+    account_login_page.enter_email_address(email)
+    account_login_page.enter_password(password)
 
 
 @when(u'User clicks on login button')
@@ -25,20 +25,20 @@ def step_impl(context):
     account_login_page.click_login_button()
 
 
-@then(u'User should be logged in')
-def step_impl(context):
+@then(u'User should be logged in and see link "{text}"')
+def step_impl(context, text):
     my_account_page = Myaccountpage(context.driver)
-    my_account_page.is_user_logged_in("View your order history")
+    my_account_page.is_user_logged_in(text)
 
 
-@when(u'User enters wrong credentials')
-def step_impl(context):
+@when(u'User enters wrong credentials "{email}" "{password}"')
+def step_impl(context, email, password):
     account_login_page = Accountloginpage(context.driver)
-    account_login_page.enter_email_address("bdd1")
-    account_login_page.enter_password("bdd1")
+    account_login_page.enter_email_address(email)
+    account_login_page.enter_password(password)
 
 
-@then(u'Proper warning message should be displayed')
-def step_impl(context):
+@then(u'Proper warning message "{message}" should be displayed')
+def step_impl(context, message):
     account_login_page = Accountloginpage(context.driver)
-    account_login_page.is_warning_message_displayed("Warning: No match for E-Mail Address and/or Password.")
+    account_login_page.is_warning_message_displayed(message)
