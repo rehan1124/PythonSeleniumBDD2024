@@ -20,6 +20,14 @@ behavex features --parallel-processes 4 --output-folder Reports
 Runs 4 tests in parallel and generates a html report in `Reports` directory
 ```
 
+* To generate and open allure reports, execute below commands in sequence
+
+```commandline
+behave -f allure_behave.formatter:AllureFormatter -o Reports/ features
+
+allure serve reports
+```
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 * Go through

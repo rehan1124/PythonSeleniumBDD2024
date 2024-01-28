@@ -24,13 +24,13 @@ def step_impl(context):
 @then(u'Product "{product_name}" should be displayed in search results')
 def step_impl(context, product_name):
     context.search_page = Searchpage(context.driver)
-    context.search_page.is_product_displayed(product_name)
+    assert context.search_page.is_product_displayed(product_name)
 
 
 @then(u'Message for product not found should be displayed "{message}"')
 def step_impl(context, message):
     context.search_page = Searchpage(context.driver)
-    context.search_page.is_invalid_product(message)
+    assert context.search_page.is_invalid_product(message)
 
 
 @given(u'User enters nothing in search box')

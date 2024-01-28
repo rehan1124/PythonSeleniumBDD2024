@@ -9,10 +9,10 @@ class Searchpage:
         self.driver = driver
 
     def is_product_displayed(self, product_name):
-        assert self.driver.find_element(By.LINK_TEXT, product_name).is_displayed()
+        return  self.driver.find_element(By.LINK_TEXT, product_name).is_displayed()
 
     def is_invalid_product(self, message):
-        assert self.driver.find_element(By.XPATH, f"//p[text()='{message}']").is_displayed()
+        return self.driver.find_element(By.XPATH, f"//p[text()='{message}']").is_displayed()
 
     def click_my_account(self):
         self.driver.find_element(By.CSS_SELECTOR, self._my_account_css).click()

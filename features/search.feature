@@ -5,6 +5,7 @@ Feature: Search functionality
     When User clicks on search button
     Then Product "HP LP3065" should be displayed in search results
 
+  @smoke-testing
   Scenario Outline: Search for invalid product
     Given User enters invalid product "<product_name>" in search box
     When User clicks on search button
@@ -14,7 +15,6 @@ Feature: Search functionality
       | JALALALALA   |
       | 1234ABCD     |
 
-  @smoke-testing
   Scenario: Search without any product name
     Given User enters nothing in search box
     When User clicks on search button
