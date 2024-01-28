@@ -1,6 +1,5 @@
 Feature: Search functionality
 
-#  @smoke-testing
   Scenario: Search for valid product
     Given User enters product "HP" in search box
     When User clicks on search button
